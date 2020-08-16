@@ -1,0 +1,47 @@
+.nav-bar {
+    background: #00102a;
+    color: #eae9e9;
+    height: 50px;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    .nav-bar-company {
+        display: flex;
+        align-items: center;
+        .nav-bar-company-logo {
+            // width: 7%;
+            img {
+                width: 40px;
+            }
+        }
+        .nav-bar-company-name {
+            color: #dfdedf;
+            font-family: inherit;
+            font-style: italic;
+            padding-left: 10px;
+            font-weight: 600;
+            font-size: 20px;
+            @media screen and (max-width: 460px) {
+                display: none;
+            }
+        }
+    }
+    .nav-bar-action {
+        display: flex;
+        font-family: inherit;
+        div {
+            padding: 10px;
+        }
+        .cart {
+            svg {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
