@@ -16,11 +16,19 @@
         align-items: center;
         .nav-bar-company-logo {
             // width: 7%;
+            a {
+                text-decoration: none;
+                color: #eae9e9;
+            }
             img {
                 width: 40px;
             }
         }
         .nav-bar-company-name {
+            a {
+                text-decoration: none;
+                color: #eae9e9;
+            }
             color: #dfdedf;
             font-family: inherit;
             font-style: italic;
@@ -35,6 +43,15 @@
     .nav-bar-action {
         display: flex;
         font-family: inherit;
+        a {
+            text-decoration: none;
+            color: #eae9e9;
+        }
+        a:hover {
+            background-color: #eae9e9;
+            color: #00102a;
+            font-weight: 600;
+        }
         div {
             padding: 10px;
         }
