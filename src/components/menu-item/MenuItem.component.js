@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './MenuItem.style.scss';
 
 import { Card } from 'react-bootstrap'
 
 class MenuItem extends Component{
     render(){
-        const { title, imgUrl } = this.props;
+        const { title, imgUrl, history, linkUrl, match } = this.props;
         return (
-            <Card className="menu-item">
+            <Card className="menu-item" onClick = {() => history.push(`${match.url}${linkUrl}`)}>
                 <div className="background-img" style={{backgroundImage:`url(${imgUrl})`}}></div>
                 <div className="content">
                     <div className="title">{title}</div>
@@ -18,4 +19,4 @@ class MenuItem extends Component{
     }
 }
 
-export default MenuItem;
+export default withRouter(MenuItem);
