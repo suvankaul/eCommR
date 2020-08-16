@@ -1,0 +1,15 @@
+.collection-preview {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .collection-title {
+        font-weight: 600;
+        padding-bottom: 5px;
+    }
+    .collection {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-bottom: 10px;
+    }
+}

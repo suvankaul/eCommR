@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Homepage.scss';
+import './Homepage.style.scss';
 
 //Component imports
 import Navigation from '../../components/navigation/Navigation.component';
