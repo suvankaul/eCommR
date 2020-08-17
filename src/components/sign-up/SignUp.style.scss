@@ -1,0 +1,21 @@
+.sign-up-container {
+    background: #00102a !important;
+    // background: rgba(0, 16, 42, 0.9) !important;
+    color: #dfdedf;
+    min-width: 35% !important;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 90%;
+    padding: 10px 15px;
+    box-shadow: 2px 2px 2px #737373;
+    .sign-up-header {
+        font-weight: 600;
+    }
+    .sign-up-body {
+        font-weight: 600;
+    }
+    .sign-up-footer {
+        font-weight: 600;
+    }
+}

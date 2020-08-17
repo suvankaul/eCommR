@@ -54,6 +54,12 @@
         }
         div {
             padding: 10px;
+            cursor: pointer;
+        }
+        div:hover {
+            background-color: #eae9e9;
+            color: #00102a;
+            font-weight: 600;
         }
         .cart {
             svg {

@@ -16,7 +16,7 @@ class Shop extends Component{
         const { collections } = this.state;
         return(
             <div className="shop-container">
-                <Navigation></Navigation>
+                {/* <Navigation></Navigation> */}
                 <div className="shop-collections">
                     {
                         collections.map(({id, ...otherCollectionProps}) => (

@@ -9,7 +9,7 @@ class Homepage extends Component{
     render(){
         return(
             <div className="homepage">
-                <Navigation></Navigation>
+                {/* <Navigation></Navigation> */}
                 <Menu></Menu>
             </div>
         )

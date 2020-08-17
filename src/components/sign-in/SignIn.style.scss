@@ -1,0 +1,92 @@
+.sign-in-container {
+    background: #00102a !important;
+    color: #dfdedf;
+    min-width: 35% !important;
+    display: flex;
+    // justify-content: space-between;
+    flex-direction: column;
+    height: 65%;
+    padding: 10px 15px;
+    box-shadow: 2px 2px 2px #737373;
+    .sign-in-header {
+        font-weight: 600;
+        height: 15%;
+        margin: 10px 25px 0;
+    }
+    .sign-in-body {
+        font-weight: 600;
+        height: 70%;
+        margin: 15px 25px;
+        // background: #556174;
+        background: rgba(85, 97, 116, 0.4);
+        border-radius: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        div {
+            margin: 10px 20px;
+            input {
+                width: 100%;
+                border: 0;
+                outline: 0;
+                background: transparent;
+                border-bottom: 1px solid #00102a;
+                color: #dfdedf;
+            }
+             ::-webkit-input-placeholder {
+                /* WebKit, Blink, Edge */
+                color: #959495;
+                opacity: 0.8;
+            }
+             :-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: #959495;
+                opacity: 1;
+            }
+             ::-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: #959495;
+                opacity: 1;
+            }
+             :-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: #959495;
+            }
+             ::-ms-input-placeholder {
+                /* Microsoft Edge */
+                color: #959495;
+            }
+             ::placeholder {
+                /* Most modern browsers support this now. */
+                color: #959495;
+            }
+        }
+    }
+    .sign-in-footer {
+        font-weight: 600;
+        height: 15%;
+        margin: 10px 25px 10px;
+        display: flex;
+        justify-content: flex-end;
+        .btn-sign-in {
+            color: #00102a;
+            background: #dfdedf;
+            padding: 10px 15px;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 0.25rem;
+        }
+        .btn-sign-in-google {
+            color: #dfdedf;
+            // background: #dfdedf;
+            background: #058322;
+            padding: 10px 15px;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 0.25rem;
+            margin-left: 15px
+        }
+    }
+}
