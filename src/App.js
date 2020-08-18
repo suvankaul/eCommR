@@ -7,7 +7,7 @@ import Navigation from './components/navigation/Navigation.component'
 import Homepage from './modules/homepage/Homepage.component';
 import Shop from './modules/Shop/Shop.component';
 import SigninAndSignup from './modules/signInAndsignUp/SigninAndSignup.component';
-import { auth } from './firebase/firebase.util';
+import { auth, createUserProfile } from './firebase/firebase.util';
 
 class App extends Component {
   constructor(){
@@ -19,14 +19,34 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount(){
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user});
-      console.log(user)
+    //onAuthStateChanged() function of auth lib keeps track of sign in status of firebase auth
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      //if user is signed in
+      if(userAuth){
+        //get document refrence for current user -> check if user exists in collection, if not create it
+        const userRef = await createUserProfile(userAuth);
+        //onSnapshot() is the function of documentRef used to get the snapshot of user from the collection
+        userRef.onSnapshot(snapShot => {
+          // console.log(snapShot.data())
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          },() => {
+            // console.log(this.state)
+          })
+        })
+        
+      }
+      //if user is signed out set current user = null
+      this.setState({ currentUser: userAuth});      
     })
   }
 
   componentWillUnmount(){
     this.unsubscribeFromAuth();
+    console.log(this.state)
   }
 
   render(){

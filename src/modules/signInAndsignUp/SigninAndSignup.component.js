@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './SigninAndSignup.style.scss';
-import Navigation from '../../components/navigation/Navigation.component';
 import SignIn from '../../components/sign-in/SignIn.component';
 import SignUp from '../../components/sign-up/SignUp.component';
 

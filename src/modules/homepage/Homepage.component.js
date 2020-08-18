@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Homepage.style.scss';
 
 //Component imports
-import Navigation from '../../components/navigation/Navigation.component';
 import Menu from '../../components/menu/Menu.component'
 
 class Homepage extends Component{

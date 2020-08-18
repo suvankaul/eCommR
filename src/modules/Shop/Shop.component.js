@@ -1,7 +1,6 @@
 import React, { Component} from 'react';
 import './Shop.style.scss';
 import '../../components/navigation/Navigation.component'
-import Navigation from '../../components/navigation/Navigation.component';
 import shopData from '../../shoppingData';
 import PreviewCollection from '../../components/preview-collection/PreviewCollection.component'
 
