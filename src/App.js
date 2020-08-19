@@ -34,13 +34,16 @@ class App extends Component {
               ...snapShot.data()
             }
           },() => {
-            // console.log(this.state)
+            console.log(this.state)
           })
         })
         
       }
       //if user is signed out set current user = null
-      this.setState({ currentUser: userAuth});      
+      this.setState({ currentUser: userAuth}, () =>{
+        console.log(this.state);
+      }); 
+           
     })
   }
 
