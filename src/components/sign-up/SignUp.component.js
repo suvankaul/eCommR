@@ -10,15 +10,31 @@ class SignUp extends Component{
             displayName: '',
             email: '',
             password:'',
-            confirmPassword: ''
+            confirmPassword: '',
+            nameE: false,
+            emailE: false,
+            passwordE: false,
+            passwordMismatchE: false
         }
     }
-
+    // passwordMismatch = false;
     handleSubmit = async (event) => {
         event.preventDefault();
         const { displayName, email, password, confirmPassword } = this.state;
-        if(password !== confirmPassword){
-            alert("Password don't match");
+        console.log(this.state)
+        if(password !== confirmPassword || displayName.length === 0 || email.length === 0 || email.toLowerCase().indexOf('@')<0){
+            if(password !== confirmPassword){
+                this.setState({ passwordMismatchE: true} ,() => {
+                    if(displayName.length === 0){
+                        this.setState({nameE: true} ,() => {
+                            if(email.length === 0 || email.toLowerCase().indexOf('@')<0){
+                                this.setState({emailE: true} ,() => {
+                                })
+                            }
+                        })
+                    }
+                })
+            }          
             return;
         }
         try{
@@ -28,7 +44,8 @@ class SignUp extends Component{
                 displayName: '',
                 email: '',
                 password:'',
-                confirmPassword: ''
+                confirmPassword: '',
+                inputErrors: false
             })
         }catch (e){
             console.log(e);
@@ -37,19 +54,35 @@ class SignUp extends Component{
 
     handleChange = (event) => {
         const { name, value } = event.target;
-        this.setState({ [name] : value})
+        this.setState({ [name] : value}, () => {})
+        
     }
     render(){
-        const { displayName, email, password, confirmPassword } = this.state;
+        const { displayName, email, password, confirmPassword, nameE, emailE,passwordMismatchE } = this.state;
         return(
             <Card className="sign-up-container">
                 <div className="sign-up-header">Don't Have an Account?, Sign Up here !</div>
                 <div className="sign-up-body">
                     {/* <form onSubmit={this.handleSubmit}> */}
-                    <div><label>Display Name</label><input type="text" name="displayName" value={displayName} required onChange={this.handleChange} placeholder="Enter your name..." /></div>
-                    <div><label>Email</label><input type="email" name="email" value={email} required onChange={this.handleChange} placeholder="Enter your email..." /></div>
-                    <div><label>Password</label><input type="password" name="password" value={password} required onChange={this.handleChange} placeholder="Enter your password..."/></div>
-                    <div><label>Confirm Password</label><input type="password" name="confirmPassword" value={confirmPassword} required onChange={this.handleChange} placeholder="Confirm password..."/></div>    
+                    <div>
+                        <label>Display Name</label>
+                        <input type="text" name="displayName" value={displayName} required onChange={this.handleChange} placeholder="Enter your name..." />
+                        {nameE ? <div className="password-mismatch">Please provide a name.</div> : null}
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="email" value={email} required onChange={this.handleChange} placeholder="Enter your email..." />
+                        {emailE ? <div className="password-mismatch">Please provide a valid email address.</div> : null}
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" name="password" value={password} required onChange={this.handleChange} placeholder="Enter your password..."/>
+                    </div>
+                    <div>
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirmPassword" value={confirmPassword} required onChange={this.handleChange} placeholder="Confirm password..."/>
+                        {passwordMismatchE ? <div className="password-mismatch">Passwords don't match. Re-enter your password.</div> : null}
+                    </div>    
                     {/* </form> */}
                 </div>
                 <div className="sign-up-footer">

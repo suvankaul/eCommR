@@ -9,7 +9,8 @@ class SignIn extends Component{
         super()
         this.state = {
             email: '',
-            password:''
+            password:'',
+            errorMessage: ''
         }
     }
 
@@ -21,6 +22,7 @@ class SignIn extends Component{
             this.setState({email: '', password:''})
         } catch(e){
             console.log(e);
+            this.setState({errorMessage: e.message})
         }
         
     }
@@ -31,14 +33,21 @@ class SignIn extends Component{
     }
 
     render(){
-        const { email, password } = this.state;
+        const { email, password, errorMessage } = this.state;
          return(
             <Card className="sign-in-container">
                 <div className="sign-in-header">Already Have an Account?, Sign In here !</div>
                 <div className="sign-in-body">
                     {/* <form onSubmit={this.handleSubmit}> */}
-                        <div><label>Email</label><input type="email" name="email" value={email} required onChange={this.handleChange} placeholder="Enter your email..." /></div>
-                        <div><label>Password</label><input type="password" name="password" value={password} required onChange={this.handleChange} placeholder="Enter your password..."/></div>
+                        <div>
+                            <label>Email</label>
+                            <input type="email" name="email" value={email} required onChange={this.handleChange} placeholder="Enter your email..." />
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <input type="password" name="password" value={password} required onChange={this.handleChange} placeholder="Enter your password..."/>
+                            {errorMessage.length !== 0 ? <div className="password-mismatch">{errorMessage}</div> : null}
+                        </div>
                         
                     {/* </form> */}
                 </div>
