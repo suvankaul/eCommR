@@ -8,20 +8,25 @@
     height: 315px;
     padding: 10px 15px;
     // box-shadow: 2px 2px 2px #737373;
-    background: #fbfbfb !important;
+    // background: #fbfbfb !important;
+    background: #fcfcfc !important;
     color: #00102a;
+    @media screen and (max-width: 460px) {
+        max-width: 100% !important;
+        margin: 0 0 10px;
+    }
     box-shadow: 1px 1px 1px #dfdedf;
     .sign-in-header {
         font-weight: 600;
         height: 50px;
-        margin: 10px 25px 0;
+        margin: 10px 15px 0;
         display: flex;
         align-items: center;
     }
     .sign-in-body {
         font-weight: 600;
         height: 215px;
-        margin: 0 25px 10px;
+        margin: 0 15px 10px;
         // background: #556174;
         // background: rgba(85, 97, 116, 0.4);
         border-radius: 0.25rem;
@@ -75,7 +80,7 @@
     .sign-in-footer {
         font-weight: 600;
         height: 50px;
-        margin: 0 25px 10px;
+        margin: 0 15px 10px;
         display: flex;
         justify-content: flex-end;
         .btn-sign-in {
@@ -87,6 +92,10 @@
             font-size: 15px;
             height: 40px;
             border-radius: 0.25rem;
+            @media screen and (max-width: 460px) {
+                font-size: 13px;
+                padding: 5px 10px;
+            }
             &:hover {
                 color: #dfdedf;
                 background: #00102a;
@@ -103,6 +112,11 @@
             height: 40px;
             border-radius: 0.25rem;
             margin-left: 15px;
+            @media screen and (max-width: 460px) {
+                font-size: 13px;
+                padding: 5px 10px;
+                margin-left: 5px;
+            }
             &:hover {
                 background: #034b14;
             }

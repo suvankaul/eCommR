@@ -19,7 +19,7 @@ class Navigation extends Component{
                 <div className="nav-bar-action">
                     <Link to="/shop"><div className="shop">SHOP</div></Link>
                     <Link to="/"><div className="contact">CONTACT US</div></Link>
-                    { currentUser ? <div className="signin"  onClick={() => auth.signOut()}>SIGN OUT</div> : <Link to="/signin"><div className="signin">SIGN IN</div></Link>}
+                    { currentUser ? <div className="signin"  onClick={() => auth.signOut()}>Hi {currentUser.displayName}, SIGN OUT</div> : <Link to="/signin"><div className="signin">SIGN IN</div></Link>}
                     
                     <Link to="/"><div className="cart"><FaShoppingBag></FaShoppingBag></div></Link>
                 </div>
