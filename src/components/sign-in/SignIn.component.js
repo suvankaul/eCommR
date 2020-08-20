@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './SignIn.style.scss';
 import { withRouter } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 
 import { signInWithGoogle, auth } from '../../firebase/firebase.util'
 
@@ -11,7 +11,8 @@ class SignIn extends Component{
         this.state = {
             email: '',
             password:'',
-            errorMessage: ''
+            errorMessage: '',
+            signinProgress: false
         }
         this.successfulSignIn = false;
     }
@@ -20,9 +21,11 @@ class SignIn extends Component{
     handleSubmit = async(event) => {
         event.preventDefault();
         const { email, password } = this.state;
+        this.setState({signinProgress: true})
         try{
             await auth.signInWithEmailAndPassword(email, password);
             this.setState({email: '', password:''},() => {
+                this.setState({signinProgress: false})
                 this.props.history.push('/shop');
                 // console.log(this.props.history);
             })
@@ -44,7 +47,7 @@ class SignIn extends Component{
     }
 
     render(){
-        const { email, password, errorMessage } = this.state;
+        const { email, password, errorMessage, signinProgress } = this.state;
          return(
             <Card className="sign-in-container">
                 <div className="sign-in-header">Already Have an Account?, Sign In here !</div>
@@ -63,7 +66,7 @@ class SignIn extends Component{
                     {/* </form> */}
                 </div>
                 <div className="sign-in-footer">
-                    <button className="btn-sign-in" onClick={this.handleSubmit}>Sign In</button>
+                    <button className="btn-sign-in" onClick={this.handleSubmit}>{signinProgress ? <Spinner className="loader" animation="border" /> : null} Sign In</button>
                     <button className="btn-sign-in-google" onClick={signInWithGoogle}>Sign In with Google</button>
                 </div>
             </Card>

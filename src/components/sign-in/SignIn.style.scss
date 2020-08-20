@@ -83,6 +83,10 @@
         margin: 0 15px 10px;
         display: flex;
         justify-content: flex-end;
+        .loader {
+            height: 17px !important;
+            width: 17px !important;
+        }
         .btn-sign-in {
             color: #00102a;
             background: #dfdedf;

@@ -67,4 +67,37 @@
             }
         }
     }
+    .sign-out-popup {
+        background: #00102a;
+        position: absolute;
+        width: 120px;
+        text-align: center;
+        height: fit-content;
+        top: 51px;
+        right: 51px;
+        z-index: 999;
+        display: flex;
+        font-family: inherit;
+        a {
+            text-decoration: none;
+            color: #eae9e9;
+        }
+        a:hover {
+            background-color: #eae9e9;
+            color: #00102a;
+            font-weight: 600;
+        }
+        div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        div:hover {
+            background-color: #eae9e9;
+            color: #00102a;
+            font-weight: 600;
+        }
+        .sign-out-icon {
+            margin-top: -2px;
+        }
+    }
 }
