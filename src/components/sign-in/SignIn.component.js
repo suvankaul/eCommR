@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SignIn.style.scss';
+import { withRouter } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
 import { signInWithGoogle, auth } from '../../firebase/firebase.util'
@@ -12,20 +13,30 @@ class SignIn extends Component{
             password:'',
             errorMessage: ''
         }
+        this.successfulSignIn = false;
     }
+    
 
     handleSubmit = async(event) => {
         event.preventDefault();
         const { email, password } = this.state;
         try{
             await auth.signInWithEmailAndPassword(email, password);
-            this.setState({email: '', password:''})
+            this.setState({email: '', password:''},() => {
+                this.props.history.push('/shop');
+                // console.log(this.props.history);
+            })
         } catch(e){
             console.log(e);
             this.setState({errorMessage: e.message})
         }
         
     }
+
+    // handleGoogleSubmit = (event) => {
+    //     signInWithGoogle.then(() => (this.props.history.push('/shop')))
+                
+    // }
 
     handleChange = (event) => {
         const { name, value } = event.target;
@@ -60,4 +71,4 @@ class SignIn extends Component{
     }
 }
 
-export default SignIn;
+export default withRouter(SignIn);

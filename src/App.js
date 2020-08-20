@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import './App.scss';
 
 //Component imports
@@ -35,6 +35,7 @@ class App extends Component {
             }
           },() => {
             console.log(this.state)
+            this.props.history.push('/shop')
           })
         })
         
@@ -66,4 +67,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
