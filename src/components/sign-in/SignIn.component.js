@@ -26,7 +26,7 @@ class SignIn extends Component{
             await auth.signInWithEmailAndPassword(email, password);
             this.setState({email: '', password:''},() => {
                 this.setState({signinProgress: false})
-                this.props.history.push('/shop');
+                // this.props.history.push('/shop');
                 // console.log(this.props.history);
             })
         } catch(e){
@@ -74,4 +74,4 @@ class SignIn extends Component{
     }
 }
 
-export default withRouter(SignIn);
+export default SignIn;
