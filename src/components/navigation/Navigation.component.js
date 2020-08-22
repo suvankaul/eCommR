@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import './Navigation.style.scss';
@@ -14,6 +15,10 @@ class Navigation extends Component{
     signOut = () =>{
         auth.signOut()
         this.setState({showSignOut : false})
+    }
+
+    componentWillMount = () => {
+        console.log(this.props.currentUser)
     }
     render(){
         const {currentUser} = this.props;
@@ -47,4 +52,10 @@ class Navigation extends Component{
     }
 }
 
-export default Navigation;
+// state : root-reducer object
+// function returns value of state directly into our component
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(Navigation);
