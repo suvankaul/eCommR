@@ -26,11 +26,11 @@ class Navigation extends Component{
             <div className="nav-bar">
                 <div className="nav-bar-company">
                     <div className="nav-bar-company-logo">
-                    <Link to='/'><img src="../../sk-circle-logo.png" alt="SK" /></Link>
+                    <Link to='/'><img src="../../logo.png" alt="SK" /></Link>
                     </div>
-                    <div className="nav-bar-company-name">
+                    {/* <div className="nav-bar-company-name">
                         <Link to='/'>SK Clothing</Link>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="nav-bar-action">
                     <Link to="/shop"><div className="shop">SHOP</div></Link>
