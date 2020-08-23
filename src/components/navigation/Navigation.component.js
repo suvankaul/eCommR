@@ -65,4 +65,10 @@ const mapStateToProps = state => ({
     hidden: state.cart.hidden
 })
 
+//use destructuring instead of state
+// const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
+//     currentUser,
+//     hidden
+// })
+
 export default connect(mapStateToProps)(Navigation);

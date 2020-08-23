@@ -10,8 +10,8 @@ class PreviewCollection extends Component{
                 <div className="collection-title">{title.toUpperCase()}</div>
                 <div className="collection">
                     {
-                        items.filter((item, index) => (index < 4)).map((item) => (
-                            <CollectionCard key={item.id} imageUrl={item.imageUrl} name={item.name} price={item.price} ></CollectionCard>
+                        items.filter((item, index) => index < 4).map((item) => (
+                            <CollectionCard key={item.id} item={item}></CollectionCard>
                         ))
                     }
                 </div>

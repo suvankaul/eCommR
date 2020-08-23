@@ -4,10 +4,10 @@
     margin: 0 10px 10px 0;
     min-width: 24% !important;
     @media screen and (max-width: 1076px) {
-        min-width: 48%;
+        min-width: 48% !important;
     }
     @media screen and (max-width: 460px) {
-        min-width: 98%;
+        min-width: 98% !important;
     }
     .collection-img {
         height: 205px;
@@ -20,9 +20,17 @@
             background-position: center;
             background-size: cover;
         }
+        &:hover {
+            cursor: pointer;
+            .content {
+                display: block;
+            }
+        }
         .content {
+            display: none;
             position: absolute;
-            background: rgba(233, 233, 233, 0.5);
+            top: 150px;
+            background: rgba(252, 252, 252, 0.7);
             .content-text {
                 padding: 10px 15px;
                 border: 1px solid;
@@ -30,6 +38,8 @@
         }
         .content:hover {
             cursor: pointer;
+            color: rgb(233, 233, 233);
+            background: #00102a;
         }
     }
     .collection-details {
