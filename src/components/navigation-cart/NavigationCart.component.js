@@ -5,6 +5,7 @@ import { FaShoppingCart, FaShoppingBag } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { selectCartItemsCount } from '../../redux/cart/cart.selector'
 import { toggleCardVisibility } from '../../redux/cart/cart.actions';
+import { createStructuredSelector} from 'reselect';
 
 class NavigationCart extends Component{
     render(){
@@ -28,8 +29,12 @@ const mapDispatchToProps = dispatch => ({
 // })
 
 //using reselect memoization to improve performance
-const mapStateToProps = state => ({
-    totalItems : selectCartItemsCount(state)
+// const mapStateToProps = state => ({
+//     totalItems : selectCartItemsCount(state)
+// })
+
+const mapStateToProps = createStructuredSelector({
+    totalItems : selectCartItemsCount
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationCart);

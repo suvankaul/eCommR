@@ -17,6 +17,9 @@
         background: #fcfcfc;
         margin: 10px 15px;
         overflow: auto;
+        .empty-cart {
+            width: 100%;
+        }
     }
     .checkout {
         color: #00102a;
@@ -28,6 +31,9 @@
         height: 40px;
         border-radius: 0.25rem;
         margin: 0 15px 10px;
+        svg {
+            margin: 0 5px 5px 0;
+        }
         &:hover {
             color: #dfdedf;
             background: #00102a;

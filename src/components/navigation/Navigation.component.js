@@ -6,8 +6,10 @@ import './Navigation.style.scss';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { auth } from '../../firebase/firebase.util';
 import NavigationCart from '../navigation-cart/NavigationCart.component';
-import CartDropdown from '../cart-dropdown/CartDropdown.component'
-
+import CartDropdown from '../cart-dropdown/CartDropdown.component';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selector';
+import { selectCardVisibility } from '../../redux/cart/cart.selector';
 class Navigation extends Component{
     constructor(){
         super()
@@ -60,15 +62,26 @@ class Navigation extends Component{
 
 // state : root-reducer object
 // function returns value of state directly into our component
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser,
-    hidden: state.cart.hidden
-})
+// const mapStateToProps = state => ({
+//     currentUser: state.user.currentUser,
+//     hidden: state.cart.hidden
+// })
 
 //use destructuring instead of state
 // const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
 //     currentUser,
 //     hidden
 // })
+
+//using reselect
+// const mapStateToProps = state => ({
+//     currentUser: selectCurrentUser(state),
+//     hidden: selectCurrentUser(state)
+// })
+
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCardVisibility
+})
 
 export default connect(mapStateToProps)(Navigation);
