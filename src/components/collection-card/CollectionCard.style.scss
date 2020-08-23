@@ -30,16 +30,23 @@
             display: none;
             position: absolute;
             top: 150px;
-            background: rgba(252, 252, 252, 0.7);
+            background: rgba(252, 252, 252, 0.6);
+            &:hover {
+                cursor: pointer;
+                color: rgb(252, 252, 252);
+                background: #00102a;
+            }
             .content-text {
                 padding: 10px 15px;
                 border: 1px solid;
+                background: rgba(252, 252, 252, 0.6);
+                color: #00102a;
+                &:hover {
+                    cursor: pointer;
+                    color: rgb(252, 252, 252);
+                    background: #00102a;
+                }
             }
-        }
-        .content:hover {
-            cursor: pointer;
-            color: rgb(233, 233, 233);
-            background: #00102a;
         }
     }
     .collection-details {

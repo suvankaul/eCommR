@@ -40,7 +40,7 @@ class Navigation extends Component{
                     <Link to="/"><div className="contact">CONTACT US</div></Link>
                     { currentUser ? <div className="signin"  onClick={() => this.setState(prevState => {return {showSignOut: !prevState.showSignOut}})}>Hi, {currentUser.displayName}</div> : <Link to="/signin"><div className="signin">SIGN IN</div></Link>}
                     
-                    <Link to="/"><NavigationCart /></Link>
+                    <NavigationCart />
                 </div>
                 {
                     this.state.showSignOut ? 
