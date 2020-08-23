@@ -1,11 +1,20 @@
-import CardActionTypes from './cart.types';
+import CartActionTypes from './cart.types';
 
 export const toggleCardVisibility = () => ({
-    type: CardActionTypes.TOGGLE_CART_VISIBILITY
+    type: CartActionTypes.TOGGLE_CART_VISIBILITY
 });
 
 export const addCartItem = item => ({
-    type: CardActionTypes.ADD_CART_ITEM,
+    type: CartActionTypes.ADD_CART_ITEM,
     payload: item
 });
 
+export const removeCartItem = item => ({
+    type: CartActionTypes.REMOVE_CART_ITEM,
+    payload: item
+})
+
+export const reduceCartItemQty = item => ({
+    type: CartActionTypes.REDUCE_CART_ITEM_QTY,
+    payload: item
+})

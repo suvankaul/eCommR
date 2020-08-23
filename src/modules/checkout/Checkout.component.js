@@ -6,7 +6,6 @@ import { FaCreditCard } from 'react-icons/fa';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selector';
-
 import CheckoutItem from '../../components/checkout-item/CheckoutItem.component';
 
 class Checkout extends Component{
@@ -48,5 +47,7 @@ const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
     cartTotal: selectCartTotal
 })
+
+
 
 export default connect(mapStateToProps)(Checkout);
