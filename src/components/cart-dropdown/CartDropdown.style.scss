@@ -1,0 +1,34 @@
+.cart-dropdown {
+    height: 275px;
+    display: flex;
+    flex-direction: column;
+    background: #fcfcfc;
+    position: absolute;
+    right: 20px;
+    border: 1px solid;
+    border-radius: 0.25rem;
+    top: 55px;
+    width: 250px;
+    z-index: 999;
+    .cart-items {
+        height: 210px;
+        display: flex;
+        flex-direction: column;
+        background: #fcfcfc;
+    }
+    .checkout {
+        color: #00102a;
+        background: #dfdedf;
+        padding: 10px 15px;
+        border: none;
+        font-weight: 600;
+        font-size: 15px;
+        height: 40px;
+        border-radius: 0.25rem;
+        margin: 10px 15px;
+        &:hover {
+            color: #dfdedf;
+            background: #00102a;
+        }
+    }
+}

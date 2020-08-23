@@ -1,0 +1,16 @@
+.cart-icon {
+    display: flex;
+    svg {
+        margin: 10px 0;
+    }
+    .item-count {
+        position: absolute;
+        padding: 0 3px !important;
+        border: 1px solid;
+        border-radius: 50%;
+        top: 12px;
+        right: 20px;
+        font-weight: 700;
+        font-size: 9px;
+    }
+}

@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import './Navigation.style.scss';
-import { FaShoppingCart, FaShoppingBag, FaSignOutAlt } from 'react-icons/fa';
+import { FaSignOutAlt } from 'react-icons/fa';
 import { auth } from '../../firebase/firebase.util';
+import NavigationCart from '../navigation-cart/NavigationCart.component';
+import CartDropdown from '../cart-dropdown/CartDropdown.component'
+
 class Navigation extends Component{
     constructor(){
         super()
@@ -21,23 +24,23 @@ class Navigation extends Component{
         console.log(this.props.currentUser)
     }
     render(){
-        const {currentUser} = this.props;
+        const {currentUser, hidden} = this.props;
         return(
             <div className="nav-bar">
                 <div className="nav-bar-company">
                     <div className="nav-bar-company-logo">
-                    <Link to='/'><img src="../../logo.png" alt="SK" /></Link>
+                    <Link to='/'><img src={require("../../assets/logo.PNG")} alt="skClothes" /></Link>
                     </div>
-                    {/* <div className="nav-bar-company-name">
-                        <Link to='/'>SK Clothing</Link>
-                    </div> */}
+                    <div className="nav-bar-company-logo-small">
+                    <Link to='/'><img src={require("../../assets/favicon.png")} alt="skC" /></Link>
+                    </div>
                 </div>
                 <div className="nav-bar-action">
                     <Link to="/shop"><div className="shop">SHOP</div></Link>
                     <Link to="/"><div className="contact">CONTACT US</div></Link>
                     { currentUser ? <div className="signin"  onClick={() => this.setState(prevState => {return {showSignOut: !prevState.showSignOut}})}>Hi, {currentUser.displayName}</div> : <Link to="/signin"><div className="signin">SIGN IN</div></Link>}
                     
-                    <Link to="/"><div className="cart"><FaShoppingBag></FaShoppingBag></div></Link>
+                    <Link to="/"><NavigationCart /></Link>
                 </div>
                 {
                     this.state.showSignOut ? 
@@ -46,7 +49,10 @@ class Navigation extends Component{
                     </Card> :
                     null
                 }
-                
+                {
+                    hidden ? null : <CartDropdown />
+                }
+                            
             </div>
         )
     }
@@ -55,7 +61,8 @@ class Navigation extends Component{
 // state : root-reducer object
 // function returns value of state directly into our component
 const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+    currentUser: state.user.currentUser,
+    hidden: state.cart.hidden
 })
 
 export default connect(mapStateToProps)(Navigation);
