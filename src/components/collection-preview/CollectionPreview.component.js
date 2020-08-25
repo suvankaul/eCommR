@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PreviewCollection.style.scss';
+import './CollectionPreview.style.scss';
 import CollectionCard from '../collection-card/CollectionCard.component'
 
 class PreviewCollection extends Component{
