@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selector';
 import CheckoutItem from '../../components/checkout-item/CheckoutItem.component';
+import StripeButton from '../../components/stripe-button/StripeButton.component';
 
 class Checkout extends Component{
     render(){ 
@@ -34,9 +35,10 @@ class Checkout extends Component{
                 <div className="checkout-container-footer">
                     <div className="footer-card">
                         <div>*Please use the following test credit card for payments*</div>
-                        <div> 4242 4242 4242 4242 --- Exp: 01/20 --- CVV: 123</div>
+                        <div> 4242 4242 4242 4242 --- Exp: 01/21 --- CVV: 123</div>
                     </div>
-                    <button className="footer-checkout"><FaCreditCard /> Procced to Pay</button>
+                    {/* <button className="footer-checkout"><FaCreditCard /> Procced to Pay</button> */}
+                    <StripeButton price={cartTotal}/>
                 </div>
             </div>
         )
