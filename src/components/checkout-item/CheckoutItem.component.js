@@ -3,7 +3,8 @@ import './CheckoutItem.style.scss';
 
 import { connect } from 'react-redux';
 import { removeCartItem, addCartItem, reduceCartItemQty } from '../../redux/cart/cart.actions';
-import { FaTimesCircle, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import { FaTimes, FaMinus, FaPlus } from 'react-icons/fa';
+import { Card } from 'react-bootstrap';
 
 
 class CheckoutItem extends Component{
@@ -11,15 +12,23 @@ class CheckoutItem extends Component{
         const { cartItem, clearItem, addCartItem, removeCartItem } = this.props;
         const {name, imageUrl, price, quantity} = cartItem;
         return(
-            <div className="checkout-item">
+            <Card className="checkout-item">
                 <div className="item-img">
                     <img src={imageUrl} alt={name} />
                 </div>
-                <div className="item-desc">{name}</div>
-                <div className="item-qty"><FaAngleLeft onClick={() => removeCartItem(cartItem)} /> {quantity} <FaAngleRight onClick={() => addCartItem(cartItem)} /></div>
-                <div className="item-price">${price}</div>
-                <div className="item-remove" onClick={() => clearItem(cartItem)}><FaTimesCircle /></div>
-            </div>
+                <div className="item-details">
+                    <div className="item-desc">{name}</div>
+                    <div className="item-price">Price: <span className="price">${price}</span></div>
+                    <div className="item-qty"> Qty:
+                        <div className="item-qty-value">
+                            <div className="item-qty-modify remove"><FaMinus onClick={() => removeCartItem(cartItem)} /></div>
+                            <div className="item-qty-number">{quantity}</div>
+                            <div className="item-qty-modify add"><FaPlus onClick={() => addCartItem(cartItem)} /></div>
+                        </div>
+                    </div>                    
+                </div>
+                <div className="item-remove" onClick={() => clearItem(cartItem)}><FaTimes /></div>
+            </Card>
         )
     }
 }

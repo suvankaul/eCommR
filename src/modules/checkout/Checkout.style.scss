@@ -4,16 +4,17 @@
     background: #fbfbfb;
     display: flex;
     flex-direction: column;
-    .checkout {
-        margin: 75px 150px 10px;
+    .checkout-desktop-view {
+        margin: 75px 25px 10px;
         height: 70%;
         overflow: auto;
         display: flex;
         align-items: center;
         flex-direction: column;
         font-size: 16px;
-        @media screen and (max-width: 460px) {
-            margin: 30px 0 10px 30px
+        @media screen and (max-width: 649px) {
+            margin: 75px 15px 10px 15px;
+            // display: none;
         }
         .checkout-header {
             display: flex;
@@ -47,15 +48,29 @@
                 }
             }
         }
-        .checkout-body {
-            padding: 0 15px;
-            margin: 10px 15px;
-            color: #00102a;
-            width: 96%;
+        .checkout-title {
+            padding: 15px 0 0;
+            font-weight: 600px;
             display: flex;
-            flex-direction: column;
-            height: 400px;
+            justify-content: center;
+            align-items: center;
+            span {
+                font-size: 20px;
+                padding-left: 10px;
+            }
+        }
+        .checkout-body {
+            padding: 0 0 0 25px;
+            // margin: 10px 15px;
+            margin: 15px 0 10px;
+            color: #00102a;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            // height: 400px;
             overflow-y: auto;
+            height: 90%
         }
         .checkout-footer {
             padding: 0 15px;
@@ -65,27 +80,50 @@
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
+            height: 10%;
             .footer-total {
-                padding: 10px 15px;
-                background: #00102a;
-                color: #fcfcfc;
-                border-radius: 0.25rem;
+                padding: 10px 30px;
+                font-weight: 700;
             }
         }
     }
     .checkout-container-footer {
-        margin: 10px 150px;
+        margin: 10px 15px;
         height: 10%;
         overflow: auto;
         display: flex;
         justify-content: space-between;
         flex-direction: row;
         align-items: center;
+        @media screen and (max-width: 650px) {
+            margin: 0 15px;
+            height: 15%;
+            flex-direction: column;
+            justify-content: normal;
+        }
         .footer-card {
             font-size: 13px;
             color: #d63b3b;
             font-weight: 600;
-            text-align: center;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            @media screen and (max-width: 650px) {
+                text-align: left;
+                margin-bottom: 10px;
+                width: 100%;
+            }
+            .card-info {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+        .footer-button {
+            @media screen and (max-width: 700px) {
+                width: 100%;
+            }
         }
         .footer-checkout {
             color: #fff;

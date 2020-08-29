@@ -25,7 +25,9 @@ const StripeButton = ({ price }) => {
             panelLabel='Pay Now'
             token={onToken}
             stripeKey={publisherKey}
-        />
+        >
+            <button className="checkout-button">Proceed to Pay</button>
+        </StripeCheckout>
     )
 }
 

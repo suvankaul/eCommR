@@ -39,7 +39,7 @@ class Navigation extends Component{
                 </div>
                 <div className="nav-bar-action">
                     <Link to="/shop"><div className="shop">SHOP</div></Link>
-                    <Link to="/"><div className="contact">CONTACT US</div></Link>
+                    {/* <Link to="/"><div className="contact">CONTACT US</div></Link> */}
                     { currentUser ? <div className="signin"  onClick={() => this.setState(prevState => {return {showSignOut: !prevState.showSignOut}})}>Hi, {currentUser.displayName}</div> : <Link to="/signin"><div className="signin">SIGN IN</div></Link>}
                     
                     <NavigationCart />

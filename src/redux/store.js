@@ -5,7 +5,13 @@ import { persistStore } from 'redux-persist'; //use redux persist for local and 
 
 import rootReducer from './root-reducer'; //root reducer having all combined reducers;
 
-const middlewares = [logger]; // creating middleware array which consists an array of all middlewares used.
+
+const middlewares = []; // creating middleware array which consists an array of all middlewares used.
+
+if(process.env.NODE_ENV === 'development'){
+    middlewares.push(logger)
+}
+
 export const store = createStore(rootReducer, applyMiddleware(...middlewares)); //creating redux stire which takes root-reducer and middlewares as two parameters [actions -> middleware -> reducers -> store -> DOM]
 
 export const persistor = persistStore(store); //convert store to persist storage and use this as wrapper for app
