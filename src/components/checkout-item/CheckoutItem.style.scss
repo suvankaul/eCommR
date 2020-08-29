@@ -84,21 +84,29 @@
         }
     }
     .item-remove {
-        width: 10%;
-        width: 10%;
-        background: #d63b3b;
+        width: 20%;
+        // background: #d63b3b;
         opacity: 0.8;
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
         &:hover {
             opacity: 1;
         }
-        svg {
-            color: #ffffff;
+        .remove {
+            height: auto;
             cursor: pointer;
-            font-size: 18px;
+            background: #d63b3b;
+            padding: 7px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+                color: #ffffff;
+                cursor: pointer;
+                font-size: 18px;
+            }
         }
     }
 }

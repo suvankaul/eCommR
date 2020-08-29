@@ -27,7 +27,7 @@ class CheckoutItem extends Component{
                         </div>
                     </div>                    
                 </div>
-                <div className="item-remove" onClick={() => clearItem(cartItem)}><FaTimes /></div>
+                <div className="item-remove"><div onClick={() => clearItem(cartItem)} className="remove"><FaTimes /></div></div>
             </Card>
         )
     }
