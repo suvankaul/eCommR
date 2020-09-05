@@ -13,11 +13,12 @@ import Shop from './modules/Shop/Shop.component';
 import SigninAndSignup from './modules/signInAndsignUp/SigninAndSignup.component';
 import Checkout from './modules/checkout/Checkout.component';
 
-import { auth, createUserProfile } from './firebase/firebase.util';
+import { auth, createUserProfile, addCollectionandDocuments } from './firebase/firebase.util';
 
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector'
 
+// import { selectCollectionsForOverview } from './redux/shop/shop.selector';
 class App extends Component {
   // commented for implementation of redux
   // constructor(){
@@ -59,7 +60,9 @@ class App extends Component {
       // this.setState({ currentUser: userAuth}, () =>{
       //   console.log(this.state);
       // }); 
-      setCurrentUser(userAuth)           
+      setCurrentUser(userAuth)  
+      //To add shop collection items once
+      // addCollectionandDocuments('shopCollections', collectionOverview.map(({title, items}) => ({title, items})))         
     })
   }
 
@@ -89,11 +92,13 @@ class App extends Component {
 // })
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  // collectionOverview: selectCollectionsForOverview
 })
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

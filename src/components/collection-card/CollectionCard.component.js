@@ -8,7 +8,7 @@ class CollectionCard extends Component{
     render(){
         const { item, addCartItem} = this.props;
         const { imageUrl, name, price } = item;
-        console.log(item, imageUrl, name, price)
+        // console.log(item, imageUrl, name, price)
         return(
             <Card className="collection-card">
                 <div className="collection-img">

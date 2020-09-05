@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './CollectionPreview.style.scss';
-import CollectionCard from '../collection-card/CollectionCard.component'
+import { withRouter } from 'react-router-dom';
+import CollectionCard from '../collection-card/CollectionCard.component';
 
 class PreviewCollection extends Component{
     render(){
-        const { title, items } = this.props;
+        const { title, items, history, match } = this.props;
+        console.log(history, match)
         return(
             <div className="collection-preview">
-                <div className="collection-title">{title.toUpperCase()}</div>
+                <div className="collection-title" onClick = {() => history.push(`${match.url}/${title.toLowerCase()}`)}>{title.toUpperCase()}</div>
                 <div className="collection">
                     {
                         items.filter((item, index) => index < 4).map((item) => (
@@ -20,4 +22,4 @@ class PreviewCollection extends Component{
     }
 }
 
-export default PreviewCollection;
+export default withRouter(PreviewCollection);
