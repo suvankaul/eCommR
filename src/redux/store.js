@@ -5,8 +5,10 @@ import { persistStore } from 'redux-persist'; //use redux persist for local and 
 
 import rootReducer from './root-reducer'; //root reducer having all combined reducers;
 
+import thunk from 'redux-thunk'; //middleware which allows to fire functions
 
-const middlewares = []; // creating middleware array which consists an array of all middlewares used.
+
+const middlewares = [thunk]; // creating middleware array which consists an array of all middlewares used.
 
 if(process.env.NODE_ENV === 'development'){
     middlewares.push(logger)

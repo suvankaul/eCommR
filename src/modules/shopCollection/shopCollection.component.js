@@ -5,7 +5,7 @@ import CollectionCard from '../../components/collection-card/CollectionCard.comp
 import { connect } from 'react-redux';
 import { selectCollection } from '../../redux/shop/shop.selector';
 
-class ShopCategories extends Component{
+class ShopCollection extends Component{
     render(){
         const { collection } = this.props;
         const { title, items } = collection;
@@ -27,4 +27,4 @@ const mapStateToProps = (state, ownProps) => ({
     collection: selectCollection(ownProps.match.params.collectionId)(state)
 })
 
-export default connect(mapStateToProps)(ShopCategories);
+export default connect(mapStateToProps)(ShopCollection);

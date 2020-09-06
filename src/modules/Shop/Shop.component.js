@@ -2,35 +2,45 @@ import React, { Component} from 'react';
 import './Shop.style.scss';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import CollectionOverview from '../../components/collection-overview/CollectionOverview.component';
-import shopCollection from '../shopCollection/shopCollection.component';
-import {firestore, convertCollectionSnapshotToObject } from '../../firebase/firebase.util';
-import { updateCollections } from '../../redux/shop/shop.actions';
+import { createStructuredSelector } from 'reselect';
+// import CollectionOverview from '../../components/collection-overview/CollectionOverview.component';
+// import shopCollection from '../shopCollection/shopCollection.component';
+// import {firestore, convertCollectionSnapshotToObject } from '../../firebase/firebase.util';
+import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { selectIsCollectionFetching, selectIsCollectionLoaded } from '../../redux/shop/shop.selector';
 
 import Loader from '../../components/loader/Loader.component';
 
-const CollectionOverviewWithLoader = Loader(CollectionOverview);
+//*********************CONTAINERS********************
+import CollectionOverviewContainer from '../../components/collection-overview/CollectionOverview.container'
+import ShopCollectionContainer from '../shopCollection/ShopCollection.container';
 
-const ShopCollectionWithLoader = Loader(shopCollection)
+//**************DIRECTLY USE HOC IN CODE********/
+// const CollectionOverviewWithLoader = Loader(CollectionOverview);
+// const ShopCollectionWithLoader = Loader(shopCollection)
+
 
 class Shop extends Component{
     state = {
         isLoading: true
     }
-    unsubscribeFromSnapshot = null;
+    // unsubscribeFromSnapshot = null;
 
     componentDidMount = () => {
 
-        const { updateCollections } = this.props;
-        const collectionRef = firestore.collection('shopCollections')
+        const { fetchCollectionsStartAsync } = this.props;
+        fetchCollectionsStartAsync();
+ 
+        //************WITHOUT THUNK*************
+        // const { updateCollections } = this.props;
+        // const collectionRef = firestore.collection('shopCollections')
 
         //USING PROMISES AND FIREBASE get() METHOD
-        collectionRef.get().then(snapshot => {
-            const collMap = convertCollectionSnapshotToObject(snapshot);
-            updateCollections(collMap);
-            this.setState({ isLoading : false})
-        })
+        // collectionRef.get().then(snapshot => {
+        //     const collMap = convertCollectionSnapshotToObject(snapshot);
+        //     updateCollections(collMap);
+        //     this.setState({ isLoading : false})
+        // })
 
         //USING SNAPSHOTS
         // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
@@ -41,8 +51,8 @@ class Shop extends Component{
     }
 
     render(){
-        const { collections, match } = this.props;
-        const { isLoading } = this.state;
+        const { collections, match, isCollectionFetching, isCollectionLoaded } = this.props;
+        // const { isLoading } = this.state;
         // return(
         //     <div className="shop-container">
         //         <Route exact path={`${match.path}`} component={CollectionOverview} />
@@ -50,18 +60,35 @@ class Shop extends Component{
         //     </div>
         // )
 
-        //USING HIGHER ORDERED COMPONENTS (HOC)
+        //***********************USING HIGHER ORDERED COMPONENTS (HOC)*****************
+        // return(
+        //     <div className="shop-container">
+        //         <Route exact path={`${match.path}`} render={(props) => <CollectionOverviewWithLoader isLoading={!isCollectionLoaded} {...props} />} />
+        //         <Route path={`${match.path}/:collectionId`} render={(props) => <ShopCollectionWithLoader isLoading={!isCollectionLoaded} {...props} />} />
+        //     </div>
+        // )
+
+        //***************************USING CONTAINERS**************
         return(
             <div className="shop-container">
-                <Route exact path={`${match.path}`} render={(props) => <CollectionOverviewWithLoader isLoading={isLoading} {...props} />} />
-                <Route path={`${match.path}/:collectionId`} render={(props) => <ShopCollectionWithLoader isLoading={isLoading} {...props} />} />
+                <Route exact path={`${match.path}`} component={CollectionOverviewContainer} />
+                <Route path={`${match.path}/:collectionId`} component={ShopCollectionContainer}/>
             </div>
         )
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap))
+// const mapDispatchToProps = dispatch => ({
+//     updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap))
+// })
+
+const mapStateToProps = createStructuredSelector({
+    // isCollectionFetching : selectIsCollectionFetching,
+    isCollectionLoaded : selectIsCollectionLoaded
 })
 
-export default connect(null,mapDispatchToProps)(Shop);
+const mapDispatchToProps = dispatch => ({
+    fetchCollectionsStartAsync: collectionsMap => dispatch(fetchCollectionsStartAsync())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Shop);
