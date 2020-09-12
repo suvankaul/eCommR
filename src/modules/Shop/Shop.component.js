@@ -1,13 +1,13 @@
-import React, { useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import './Shop.style.scss';
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 // import CollectionOverview from '../../components/collection-overview/CollectionOverview.component';
 // import shopCollection from '../shopCollection/shopCollection.component';
 // import {firestore, convertCollectionSnapshotToObject } from '../../firebase/firebase.util';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
-import { selectIsCollectionFetching, selectIsCollectionLoaded } from '../../redux/shop/shop.selector';
+import { selectIsCollectionLoaded } from '../../redux/shop/shop.selector';
 
 // import Loader from '../../components/loader/Loader.component';
 
@@ -98,7 +98,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchCollectionsStartAsync: collectionsMap => dispatch(fetchCollectionsStart())
+    fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStart())
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Shop);
