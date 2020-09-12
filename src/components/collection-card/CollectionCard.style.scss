@@ -2,9 +2,9 @@
     display: flex;
     height: 350px;
     margin: 0 10px 10px 0;
-    min-width: 24% !important;
+    min-width: 19% !important;
     @media screen and (max-width: 1076px) {
-        min-width: 48% !important;
+        min-width: 32% !important;
     }
     @media screen and (max-width: 460px) {
         min-width: 98% !important;

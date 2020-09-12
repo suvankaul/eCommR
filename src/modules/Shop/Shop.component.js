@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { useState, useEffect} from 'react';
 import './Shop.style.scss';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import { createStructuredSelector } from 'reselect';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import { selectIsCollectionFetching, selectIsCollectionLoaded } from '../../redux/shop/shop.selector';
 
-import Loader from '../../components/loader/Loader.component';
+// import Loader from '../../components/loader/Loader.component';
 
 //*********************CONTAINERS********************
 import CollectionOverviewContainer from '../../components/collection-overview/CollectionOverview.container'
@@ -20,62 +20,72 @@ import ShopCollectionContainer from '../shopCollection/ShopCollection.container'
 // const ShopCollectionWithLoader = Loader(shopCollection)
 
 
-class Shop extends Component{
-    state = {
-        isLoading: true
-    }
+const Shop = ({ fetchCollectionsStartAsync, match}) => {
+
     // unsubscribeFromSnapshot = null;
 
-    componentDidMount = () => {
+    useEffect(() => {
+        fetchCollectionsStartAsync()
+    },[fetchCollectionsStartAsync])
 
-        const { fetchCollectionsStartAsync } = this.props;
-        fetchCollectionsStartAsync();
+    return(
+        <div className="shop-container">
+            <Route exact path={`${match.path}`} component={CollectionOverviewContainer} />
+            <Route path={`${match.path}/:collectionId`} component={ShopCollectionContainer}/>
+        </div>
+    )
+
+    // componentDidMount = () => {
+
+    //     const { fetchCollectionsStartAsync } = this.props;
+    //     fetchCollectionsStartAsync();
  
-        //************WITHOUT THUNK*************
-        // const { updateCollections } = this.props;
-        // const collectionRef = firestore.collection('shopCollections')
+    //     //************WITHOUT THUNK*************
+    //     // const { updateCollections } = this.props;
+    //     // const collectionRef = firestore.collection('shopCollections')
 
-        //USING PROMISES AND FIREBASE get() METHOD
-        // collectionRef.get().then(snapshot => {
-        //     const collMap = convertCollectionSnapshotToObject(snapshot);
-        //     updateCollections(collMap);
-        //     this.setState({ isLoading : false})
-        // })
+    //     //USING PROMISES AND FIREBASE get() METHOD
+    //     // collectionRef.get().then(snapshot => {
+    //     //     const collMap = convertCollectionSnapshotToObject(snapshot);
+    //     //     updateCollections(collMap);
+    //     //     this.setState({ isLoading : false})
+    //     // })
 
-        //USING SNAPSHOTS
-        // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
-        //    const collMap =  convertCollectionSnapshotToObject(snapshot);
-        //    updateCollections(collMap)
-        //    this.setState({isLoading : false})
-        // })
-    }
+    //     //USING SNAPSHOTS
+    //     // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
+    //     //    const collMap =  convertCollectionSnapshotToObject(snapshot);
+    //     //    updateCollections(collMap)
+    //     //    this.setState({isLoading : false})
+    //     // })
+    // }
 
-    render(){
-        const { collections, match, isCollectionFetching, isCollectionLoaded } = this.props;
-        // const { isLoading } = this.state;
-        // return(
-        //     <div className="shop-container">
-        //         <Route exact path={`${match.path}`} component={CollectionOverview} />
-        //         <Route path={`${match.path}/:collectionId`} component={shopCollection} />
-        //     </div>
-        // )
 
-        //***********************USING HIGHER ORDERED COMPONENTS (HOC)*****************
-        // return(
-        //     <div className="shop-container">
-        //         <Route exact path={`${match.path}`} render={(props) => <CollectionOverviewWithLoader isLoading={!isCollectionLoaded} {...props} />} />
-        //         <Route path={`${match.path}/:collectionId`} render={(props) => <ShopCollectionWithLoader isLoading={!isCollectionLoaded} {...props} />} />
-        //     </div>
-        // )
+    // render(){
+    //     const { collections, match, isCollectionFetching, isCollectionLoaded } = this.props;
+    //     // const { isLoading } = this.state;
+    //     // return(
+    //     //     <div className="shop-container">
+    //     //         <Route exact path={`${match.path}`} component={CollectionOverview} />
+    //     //         <Route path={`${match.path}/:collectionId`} component={shopCollection} />
+    //     //     </div>
+    //     // )
 
-        //***************************USING CONTAINERS**************
-        return(
-            <div className="shop-container">
-                <Route exact path={`${match.path}`} component={CollectionOverviewContainer} />
-                <Route path={`${match.path}/:collectionId`} component={ShopCollectionContainer}/>
-            </div>
-        )
-    }
+    //     //***********************USING HIGHER ORDERED COMPONENTS (HOC)*****************
+    //     // return(
+    //     //     <div className="shop-container">
+    //     //         <Route exact path={`${match.path}`} render={(props) => <CollectionOverviewWithLoader isLoading={!isCollectionLoaded} {...props} />} />
+    //     //         <Route path={`${match.path}/:collectionId`} render={(props) => <ShopCollectionWithLoader isLoading={!isCollectionLoaded} {...props} />} />
+    //     //     </div>
+    //     // )
+
+    //     //***************************USING CONTAINERS**************
+    //     return(
+    //         <div className="shop-container">
+    //             <Route exact path={`${match.path}`} component={CollectionOverviewContainer} />
+    //             <Route path={`${match.path}/:collectionId`} component={ShopCollectionContainer}/>
+    //         </div>
+    //     )
+    // }
 }
 
 // const mapDispatchToProps = dispatch => ({
