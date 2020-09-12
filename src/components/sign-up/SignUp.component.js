@@ -87,7 +87,7 @@ const SignUp = ({signUpStart}) => {
 
     // componentWillUnmount = () => this.setState({signUpProgress: false})
     useEffect(() => {
-        return () => this.setState({signUpProgress: false})
+        return () => setSignUpProgress(false);
     },[])
 
     const handleChange = (event) => {
