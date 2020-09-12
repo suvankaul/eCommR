@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './SignIn.style.scss';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import { Card, Spinner } from 'react-bootstrap';
 
-import { signInWithGoogle, auth } from '../../firebase/firebase.util'
+// import { signInWithGoogle, auth } from '../../firebase/firebase.util';
+import { createStructuredSelector } from 'reselect';
+import { connect} from 'react-redux'
+import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions';
 
 class SignIn extends Component{
+    
     constructor(props){
         super()
         this.state = {
@@ -14,28 +18,35 @@ class SignIn extends Component{
             errorMessage: '',
             signinProgress: false
         }
-        this.successfulSignIn = false;
     }
-    
+
+    componentWillUnmount = () => (this.setState({signinProgress: false}))    
 
     handleSubmit = async(event) => {
         event.preventDefault();
         const { email, password } = this.state;
+        const { emailSignInStart } = this.props;
         this.setState({signinProgress: true})
-        try{
-            await auth.signInWithEmailAndPassword(email, password);
-            this.setState({email: '', password:''},() => {
-                this.setState({signinProgress: false})
-                // this.props.history.push('/shop');
-                // console.log(this.props.history);
-            })
-        } catch(e){
-            console.log(e);
-            this.setState({errorMessage: e.message})
-        }
+
+        //************WITH REDUX-SAGA*************/
+        emailSignInStart(email, password)
+
+        //***WITHOUT SAGA******/
+        // try{
+        //     await auth.signInWithEmailAndPassword(email, password);
+        //     this.setState({email: '', password:''},() => {
+        //         this.setState({signinProgress: false})
+        //         // this.props.history.push('/shop');
+        //         // console.log(this.props.history);
+        //     })
+        // } catch(e){
+        //     console.log(e);
+        //     this.setState({errorMessage: e.message})
+        // }
         
     }
 
+    //***WITHOUT SAGA******/
     // handleGoogleSubmit = (event) => {
     //     signInWithGoogle.then(() => (this.props.history.push('/shop')))
                 
@@ -47,6 +58,7 @@ class SignIn extends Component{
     }
 
     render(){
+        const { googleSignInStart } = this.props;
         const { email, password, errorMessage, signinProgress } = this.state;
          return(
             <Card className="sign-in-container">
@@ -67,11 +79,17 @@ class SignIn extends Component{
                 </div>
                 <div className="sign-in-footer">
                     <button className="btn-sign-in" onClick={this.handleSubmit}>{signinProgress ? <Spinner className="loader" animation="border" /> : null} Sign In</button>
-                    <button className="btn-sign-in-google" onClick={signInWithGoogle}>Sign In with Google</button>
+                    <button className="btn-sign-in-google" onClick={googleSignInStart}>Sign In with Google</button>
                 </div>
             </Card>
          )
     }
 }
 
-export default SignIn;
+
+const mapDispatchToProps = dispatch => ({
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    emailSignInStart: (email, password) => dispatch(emailSignInStart({ email, password}))
+})
+
+export default connect(null, mapDispatchToProps)(SignIn);

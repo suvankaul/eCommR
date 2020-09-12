@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './SignUp.style.scss';
-import { Card } from 'react-bootstrap';
-import { auth, createUserProfile } from '../../firebase/firebase.util';
+import { Card, Spinner } from 'react-bootstrap';
+// import { auth, createUserProfile } from '../../firebase/firebase.util';
+
+import { signUpStart } from '../../redux/user/user.actions'
+import { connect } from 'react-redux';
 
 class SignUp extends Component{
     constructor(props){
@@ -14,13 +17,16 @@ class SignUp extends Component{
             nameE: false,
             emailE: false,
             passwordE: false,
-            passwordMismatchE: false
+            passwordMismatchE: false,
+            signUpProgress: false
         }
     }
     // passwordMismatch = false;
     handleSubmit = async (event) => {
         event.preventDefault();
         const { displayName, email, password, confirmPassword } = this.state;
+        const { signUpStart } = this.props;
+        this.setState({signUpProgress: true});
         console.log(this.state)
         if(password !== confirmPassword || displayName.length === 0 || email.length === 0 || email.toLowerCase().indexOf('@')<0){
             if(password !== confirmPassword){
@@ -37,20 +43,23 @@ class SignUp extends Component{
             }          
             return;
         }
-        try{
-            const { user } = await auth.createUserWithEmailAndPassword(email, password);
-            await createUserProfile(user, { displayName });
-            this.setState({
-                displayName: '',
-                email: '',
-                password:'',
-                confirmPassword: '',
-                inputErrors: false
-            })
-        }catch (e){
-            console.log(e);
-        }
+        signUpStart({email, password, displayName})
+        // try{
+        //     const { user } = await auth.createUserWithEmailAndPassword(email, password);
+        //     await createUserProfile(user, { displayName });
+        //     this.setState({
+        //         displayName: '',
+        //         email: '',
+        //         password:'',
+        //         confirmPassword: '',
+        //         inputErrors: false
+        //     })
+        // }catch (e){
+        //     console.log(e);
+        // }
     }
+
+    componentWillUnmount = () => this.setState({signUpProgress: false})
 
     handleChange = (event) => {
         const { name, value } = event.target;
@@ -58,7 +67,7 @@ class SignUp extends Component{
         
     }
     render(){
-        const { displayName, email, password, confirmPassword, nameE, emailE,passwordMismatchE } = this.state;
+        const { displayName, email, password, confirmPassword, nameE, emailE,passwordMismatchE, signUpProgress } = this.state;
         return(
             <Card className="sign-up-container">
                 <div className="sign-up-header">Don't Have an Account?, Sign Up here !</div>
@@ -86,11 +95,15 @@ class SignUp extends Component{
                     {/* </form> */}
                 </div>
                 <div className="sign-up-footer">
-                    <button className="btn-sign-up" onClick={this.handleSubmit}>Sign Up</button>
+                    <button className="btn-sign-up" onClick={this.handleSubmit}>{signUpProgress ? <Spinner className="loader" animation="border" /> : null}Sign Up</button>
                 </div>
             </Card>
          )
     }
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+    signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
+})
+
+export default connect(null, mapDispatchToProps)(SignUp);

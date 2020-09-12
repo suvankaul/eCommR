@@ -10,6 +10,8 @@ import CartDropdown from '../cart-dropdown/CartDropdown.component';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import { selectCardVisibility } from '../../redux/cart/cart.selector';
+
+import {signOutStart } from '../../redux/user/user.actions'
 class Navigation extends Component{
     constructor(){
         super()
@@ -17,8 +19,10 @@ class Navigation extends Component{
             showSignOut : false
         }
     }
+
     signOut = () =>{
-        auth.signOut()
+        const { signOutStart } = this.props;
+        signOutStart();
         this.setState({showSignOut : false})
     }
 
@@ -84,4 +88,8 @@ const mapStateToProps = createStructuredSelector({
     hidden: selectCardVisibility
 })
 
-export default connect(mapStateToProps)(Navigation);
+const mapDispatchToProps = dispatch => ({
+    signOutStart: () => dispatch(signOutStart())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Navigation);

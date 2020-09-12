@@ -18,6 +18,7 @@ const INITIAL_STATE = {
     },{
         title: 'WOMEN',
         imgUrl: `https://mocah.org/uploads/posts/1112499-face-sunlight-women-model-portrait-long-hair-brunette-looking-at-viewer-photography-necklace-dress-smiling-fashion-hair-spring-Person-girl-beauty-smile-woman-lady-photo.jpg`,
+        // imgUrl: `https://mocah.org/uploads/posts/1124172-face-women-outdoors-women-model-portrait-long-hair-blue-eyes-nature-brunette-photography-smiling-skirt-fashion-Aurela-Skandaj-emotion-Person-singing-child-girl-beauty-s.jpg`,
         id: 4,
         linkUrl: 'shop/womens'
     },{

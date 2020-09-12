@@ -6,7 +6,7 @@ import CollectionCard from '../collection-card/CollectionCard.component';
 class PreviewCollection extends Component{
     render(){
         const { title, items, history, match } = this.props;
-        console.log(history, match)
+        // console.log(history, match)
         return(
             <div className="collection-preview">
                 <div className="collection-title" onClick = {() => history.push(`${match.url}/${title.toLowerCase()}`)}>{title.toUpperCase()}</div>

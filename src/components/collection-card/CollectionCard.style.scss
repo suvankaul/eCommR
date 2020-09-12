@@ -1,6 +1,6 @@
 .collection-card {
     display: flex;
-    height: 250px;
+    height: 350px;
     margin: 0 10px 10px 0;
     min-width: 24% !important;
     @media screen and (max-width: 1076px) {
@@ -10,7 +10,7 @@
         min-width: 98% !important;
     }
     .collection-img {
-        height: 205px;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;

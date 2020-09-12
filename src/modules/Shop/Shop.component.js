@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 // import CollectionOverview from '../../components/collection-overview/CollectionOverview.component';
 // import shopCollection from '../shopCollection/shopCollection.component';
 // import {firestore, convertCollectionSnapshotToObject } from '../../firebase/firebase.util';
-import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import { selectIsCollectionFetching, selectIsCollectionLoaded } from '../../redux/shop/shop.selector';
 
 import Loader from '../../components/loader/Loader.component';
@@ -88,7 +88,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchCollectionsStartAsync: collectionsMap => dispatch(fetchCollectionsStartAsync())
+    fetchCollectionsStartAsync: collectionsMap => dispatch(fetchCollectionsStart())
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(Shop);

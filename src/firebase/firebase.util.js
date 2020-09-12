@@ -13,11 +13,11 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 //-----------------------Create a provider that opens a pop up everytime user clicks on sign in with google-----------------------------
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 //--------------export auth sign in pop which takes google sign in as provider to generate pop with google sign in option.--------------
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 //-------------------------------Add signed in users to 'USERS' collection in firestore------------------------------------------------
 export const createUserProfile = async(userAuth, additionalData) => {
@@ -44,6 +44,15 @@ export const createUserProfile = async(userAuth, additionalData) => {
     }
     //returning the document refrence for other purpose
     return userRef;
+}
+
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+            unsubscribe();
+            resolve(userAuth)
+        }, reject)
+    })
 }
 
 export const addCollectionandDocuments = async(collectionKey, objectsToAdd) =>{

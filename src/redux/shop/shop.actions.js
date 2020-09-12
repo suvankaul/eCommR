@@ -8,7 +8,7 @@ import { firestore, convertCollectionSnapshotToObject} from '../../firebase/fire
 //     payload: collectionsMap
 // })
 
-//WITH THUNK
+// ASYNC FUNCTIONS
 export const fetchCollectionsStart = () => ({
     type: ShopActionTypes.FETCH_COLLECTIONS_START,
 })
@@ -23,16 +23,17 @@ export const fetchCollectionsFailure = (err) => ({
     payload: err
 })
 
-export const fetchCollectionsStartAsync = () => {
-    return dispatch => {
-        const collectionRef = firestore.collection('shopCollections')
-        dispatch(fetchCollectionsStart())
-        collectionRef.get().then(snapshot => {
-            const collMap = convertCollectionSnapshotToObject(snapshot);
-            // updateCollections(collMap);
-            dispatch(fetchCollectionsSuccess(collMap))
-        }).catch(e => {
-            dispatch(fetchCollectionsFailure(e.message))
-        })
-    }
-}
+//WITH THUNK
+// export const fetchCollectionsStartAsync = () => {
+//     return dispatch => {
+//         const collectionRef = firestore.collection('shopCollections')
+//         dispatch(fetchCollectionsStart())
+//         collectionRef.get().then(snapshot => {
+//             const collMap = convertCollectionSnapshotToObject(snapshot);
+//             // updateCollections(collMap);
+//             dispatch(fetchCollectionsSuccess(collMap))
+//         }).catch(e => {
+//             dispatch(fetchCollectionsFailure(e.message))
+//         })
+//     }
+// }
