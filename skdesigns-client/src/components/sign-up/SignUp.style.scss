@@ -1,0 +1,113 @@
+.sign-up-container {
+    background: #00102a;
+    color: #dfdedf;
+    max-width: 45% !important;
+    display: flex;
+    // justify-content: space-between;
+    flex-direction: column;
+    height: 500px;
+    padding: 10px 15px;
+    // box-shadow: 2px 2px 2px #737373;
+    // background: #fbfbfb !important;
+    background: #fcfcfc !important;
+    color: #00102a;
+    @media screen and (max-width: 460px) {
+        max-width: 100% !important;
+        margin: 0 0 10px;
+    }
+    box-shadow: 1px 1px 1px #dfdedf;
+    .sign-up-header {
+        font-weight: 600;
+        height: 50px;
+        margin: 10px 15px 0;
+        display: flex;
+        align-items: center;
+    }
+    .sign-up-body {
+        font-weight: 600;
+        height: 400px;
+        margin: 0 15px 10px;
+        // background: #556174;
+        // background: rgba(85, 97, 116, 0.4);
+        border-radius: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        div {
+            margin: 0 20px 10px 0;
+            input {
+                width: 100%;
+                border: 0;
+                outline: 0;
+                background: transparent;
+                border-bottom: 1px solid #00102a;
+                color: #00102a;
+                font-size: 14px;
+            }
+            .password-mismatch {
+                font-size: 13px;
+                color: #d63b3b;
+            }
+             ::-webkit-input-placeholder {
+                /* WebKit, Blink, Edge */
+                color: #959495;
+                opacity: 0.8;
+            }
+             :-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: #959495;
+                opacity: 1;
+            }
+             ::-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: #959495;
+                opacity: 1;
+            }
+             :-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: #959495;
+            }
+             ::-ms-input-placeholder {
+                /* Microsoft Edge */
+                color: #959495;
+            }
+             ::placeholder {
+                /* Most modern browsers support this now. */
+                color: #959495;
+            }
+        }
+    }
+    .sign-up-footer {
+        font-weight: 600;
+        height: 50px;
+        margin: 0 15px 10px;
+        display: flex;
+        justify-content: flex-end;
+        .loader {
+            height: 17px !important;
+            width: 17px !important;
+        }
+        .btn-sign-up {
+            color: #00102a;
+            background: #dfdedf;
+            padding: 10px 15px;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            height: 40px;
+            border-radius: 0.25rem;
+            .loader {
+                position: initial !important;
+                margin-right: 5px;
+            }
+            @media screen and (max-width: 460px) {
+                font-size: 13px;
+                padding: 5px 10px;
+            }
+            &:hover {
+                color: #dfdedf;
+                background: #00102a;
+            }
+        }
+    }
+}
