@@ -6,12 +6,15 @@
         "node": "12.16.3",
         "npm": "6.13.1"
     },
+
     "scripts": {
         "client": "cd skdesigns-client && npm start",
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon .",
         "build": "cd skdesigns-client && npm run build",
-        "server": "nodemon ."
+        "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
+        "server": "nodemon .",
+        "heroku-postbuild": "cd skdesigns-client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
     },
     "author": "",
     "license": "ISC",

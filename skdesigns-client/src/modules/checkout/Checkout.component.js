@@ -43,7 +43,7 @@ class Checkout extends Component{
                     {
                         cartItems.length > 0 ?
                         <div className="footer-button"><StripeButton price={cartTotal}/></div>:
-                        <div className="footer-button"><button className="checkout-button" disabled >Proceed to Pay</button></div>
+                        <div className="footer-button"><button className="checkout-button-disabled" disabled >Proceed to Pay</button></div>
                     }
                     
                 </div>
