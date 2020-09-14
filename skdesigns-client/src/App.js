@@ -37,7 +37,7 @@ const App = ({ checkUserSession, currentUser}) => {
 
 
   useEffect(() => {
-    setLoading(!loading)
+    setLoading(false)
   }, [])
 
   // componentDidMount(){
