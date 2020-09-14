@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-
+/skdesigns-client/src/firebase/firebaseConfig.js
+/skdesigns-client/src/components/stripe-button/StripePublisherKey.js
 
 # dependencies
 /node_modules
