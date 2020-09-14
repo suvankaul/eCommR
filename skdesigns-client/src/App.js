@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import './App.scss';
-
+import { Spinner } from 'react-bootstrap';
 //React redux
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
@@ -20,6 +20,8 @@ import { selectCurrentUser } from './redux/user/user.selector'
 import { checkUserSession } from './redux/user/user.actions';
 // import { selectCollectionsForOverview } from './redux/shop/shop.selector';
 const App = ({ checkUserSession, currentUser}) => {
+  const [loading, setLoading] = useState(true);
+
   // commented for implementation of redux
   // constructor(){
   //   super();
@@ -32,6 +34,11 @@ const App = ({ checkUserSession, currentUser}) => {
   useEffect(() => {
     checkUserSession();
   },[checkUserSession])
+
+
+  useEffect(() => {
+    setLoading(!loading)
+  }, [])
 
   // componentDidMount(){
   //   // const { checkUserSession } = this.props;
@@ -75,19 +82,23 @@ const App = ({ checkUserSession, currentUser}) => {
   //   this.unsubscribeFromAuth();
   //   // console.log(this.state)
   // }
-
   return (
-    <div >
-    <Navigation></Navigation>
-      <Switch>
-        <Route exact path='/' component={Homepage} />
-        <Route path='/shop' component={Shop} />
-        {/* <Route path='/signin' component={SigninAndSignup} /> */}
-        <Route exact path="/checkout" component={Checkout} />
-        <Route exact path='/signin' render={() =>currentUser ? <Redirect to='/' /> : <SigninAndSignup /> } />
-      </Switch>
-    </div>
-  );
+    loading ? 
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+     :
+      <div >
+          <Navigation></Navigation>
+          <Switch>
+            <Route exact path='/' component={Homepage} />
+            <Route path='/shop' component={Shop} />
+            {/* <Route path='/signin' component={SigninAndSignup} /> */}
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path='/signin' render={() =>currentUser ? <Redirect to='/' /> : <SigninAndSignup /> } />
+          </Switch>
+      </div>
+  )
 }
 
 // const mapStateToProps = ({ user }) => ({
