@@ -43,7 +43,7 @@ const SignUp = ({signUpStart}) => {
         // const { signUpStart } = this.props;
         setSignUpProgress(true)
         // this.setState({signUpProgress: true});
-        console.log(this.state)
+        // console.log(this.state)
         if(password !== confirmPassword || displayName.length === 0 || email.length === 0 || email.toLowerCase().indexOf('@')<0){
             if(password !== confirmPassword){
                 setUserCredentialsError({passwordMismatchE: true},() =>{
