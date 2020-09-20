@@ -17,3 +17,17 @@ a {
  ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.spinner-border {
+    position: absolute !important;
+    top: 43% !important;
+    left: 43% !important;
+    height: 5rem !important;
+    width: 5rem !important;
+    @media screen and (max-width: 420px) {
+        left: 40% !important;
+    }
+    @media screen and (max-width: 375px) {
+        left: 40% !important;
+    }
+}

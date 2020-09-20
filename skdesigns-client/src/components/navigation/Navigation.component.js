@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import './Navigation.style.scss';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { auth } from '../../firebase/firebase.util';
+// import { auth } from '../../firebase/firebase.util';
 import NavigationCart from '../navigation-cart/NavigationCart.component';
 import CartDropdown from '../cart-dropdown/CartDropdown.component';
 import { createStructuredSelector } from 'reselect';
@@ -26,9 +26,9 @@ class Navigation extends Component{
         this.setState({showSignOut : false})
     }
 
-    componentWillMount = () => {
-        console.log(this.props.currentUser)
-    }
+    // componentWillMount = () => {
+    //     // console.log(this.props.currentUser)
+    // }
     render(){
         const {currentUser, hidden} = this.props;
         return(

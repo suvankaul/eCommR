@@ -26,7 +26,7 @@ export const createUserProfile = async(userAuth, additionalData) => {
     const userRef = firestore.doc(`users/${userAuth.uid}`);
     //document snapshot to get status of object in firestore
     const snapShot = await userRef.get();
-    console.log(snapShot)
+    // console.log(snapShot)
     //if document doesnt exist in collection, then creating one using documentRef .get() method
     if(!snapShot.exists){
         const { displayName, email } = userAuth;
@@ -57,7 +57,7 @@ export const getCurrentUser = () => {
 
 export const addCollectionandDocuments = async(collectionKey, objectsToAdd) =>{
     const collectionRef = firestore.collection(collectionKey);
-    console.log(collectionRef);
+    // console.log(collectionRef);
     const batch = firestore.batch();
     objectsToAdd.forEach(obj => {
         const newDocRef = collectionRef.doc();
@@ -77,7 +77,7 @@ export const convertCollectionSnapshotToObject = (collections) => {
             items
         }
     })
-    console.log(transformedCollections)
+    // console.log(transformedCollections)
 
     return transformedCollections.reduce((accumulator, collection) => {
         accumulator[collection.title.toLowerCase()] = collection;

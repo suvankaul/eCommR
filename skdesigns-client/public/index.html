@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon-light-transparent.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Web site created using create-react-app" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -25,6 +25,10 @@
     -->
     <title>skClothes</title>
     <style>
+        #root {
+            background-color: #fbfbfb !important;
+        }
+        
         .loading {
             display: inline-block;
             /* content: url('./favicon-light.PNG'); */
@@ -35,9 +39,11 @@
             border-top-color: rgba(0, 16, 42, .4);
             animation: spin 1s ease-in-out infinite;
             -webkit-animation: spin 1s ease-in-out infinite;
-            left: calc(43%);
-            top: calc(35%);
-            position: fixed;
+            left: 30.5rem;
+            top: 15.5rem;
+            /* left: calc(43%);
+            top: calc(35%); */
+            position: absolute;
             z-index: 1;
         }
         
@@ -65,8 +71,10 @@
             width: 145px;
             height: 145px;
             border-radius: 50%;
-            left: calc(44%);
-            top: calc(35.5%);
+            left: 31rem;
+            top: 16rem;
+            /* left: calc(44%);
+            top: calc(35.5%); */
             position: fixed;
             z-index: 1;
         }
@@ -88,7 +96,7 @@
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-        <div>
+        <div class="main-loader">
             <div class="loading"></div>
             <img class="loading-img" src="./favicon-light.PNG" />
         </div>

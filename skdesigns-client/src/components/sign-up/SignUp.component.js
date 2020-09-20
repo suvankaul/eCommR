@@ -5,7 +5,7 @@ import { Card, Spinner } from 'react-bootstrap';
 
 import { signUpStart } from '../../redux/user/user.actions'
 import { connect } from 'react-redux';
-import { FaTruckMonster } from 'react-icons/fa';
+// import { FaTruckMonster } from 'react-icons/fa';
 
 const SignUp = ({signUpStart}) => {
     const [userCredentials, setUserCredentials] = useState({

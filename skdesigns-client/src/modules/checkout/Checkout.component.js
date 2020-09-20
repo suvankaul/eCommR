@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import './Checkout.style.scss';
 import { Card } from 'react-bootstrap';
-import { FaCreditCard } from 'react-icons/fa';
+// import { FaCreditCard } from 'react-icons/fa';
 
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';

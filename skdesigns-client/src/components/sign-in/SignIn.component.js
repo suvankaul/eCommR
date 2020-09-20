@@ -4,7 +4,7 @@ import './SignIn.style.scss';
 import { Card, Spinner } from 'react-bootstrap';
 
 // import { signInWithGoogle, auth } from '../../firebase/firebase.util';
-import { createStructuredSelector } from 'reselect';
+// import { createStructuredSelector } from 'reselect';
 import { connect} from 'react-redux'
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions';
 
@@ -13,7 +13,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
         email: '',
         password: ''
     })
-    const [errorMessage, setErrorMessage] = useState('')
+    const [errorMessage] = useState('')
     const [signinProgress, setSignInProgress] = useState(false)
     // constructor(props){
     //     super()

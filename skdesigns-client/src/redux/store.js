@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'; //use store and middlewares in redux
-import { logger } from 'redux-logger'; // use logger middleware for logging redux actions;
+// import { logger } from 'redux-logger'; // use logger middleware for logging redux actions;
 
 import { persistStore } from 'redux-persist'; //use redux persist for local and session storage
 

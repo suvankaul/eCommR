@@ -3,13 +3,13 @@ import './Shop.style.scss';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Spinner } from 'react-bootstrap';
 // import CollectionOverview from '../../components/collection-overview/CollectionOverview.component';
 // import shopCollection from '../shopCollection/shopCollection.component';
 // import {firestore, convertCollectionSnapshotToObject } from '../../firebase/firebase.util';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import { selectIsCollectionLoaded } from '../../redux/shop/shop.selector';
 
-import Loader from '../../components/loader/Loader.component';
 
 //*********************CONTAINERS********************
 // import CollectionOverviewContainer from '../../components/collection-overview/CollectionOverview.container'
@@ -34,7 +34,9 @@ const Shop = ({ fetchCollectionsStartAsync, match}) => {
     return(
         <div className="shop-container">
             <Suspense fallback={
-                <Loader />
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
             }>
                 <Route exact path={`${match.path}`} component={CollectionOverviewContainer} />
                 <Route path={`${match.path}/:collectionId`} component={ShopCollectionContainer}/>

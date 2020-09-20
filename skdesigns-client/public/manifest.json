@@ -1,17 +1,13 @@
 {
-    "short_name": "React App",
-    "name": "Create React App Sample",
+    "short_name": "SK Clothing",
+    "name": "Sk Clothing App",
     "icons": [{
             "src": "favicon.ico",
             "sizes": "64x64",
             "type": "image/x-icon"
         },
         {
-            "src": "logo.PNG",
-            "type": "image/png"
-        },
-        {
-            "src": "logo.PNG",
+            "src": "favicon-144x144.png",
             "type": "image/png"
         }
     ],

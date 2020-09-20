@@ -9,7 +9,7 @@ class ShopCollection extends Component{
     render(){
         const { collection } = this.props;
         const { title, items } = collection;
-        console.log(collection)
+        // console.log(collection)
         return(
             <div className="shop-collection-page">
                 <div className="shop-collection-page-title">{title}</div>

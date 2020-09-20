@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './NavigationCart.style.scss';
-import { FaShoppingCart, FaShoppingBag } from 'react-icons/fa';
+import { FaShoppingBag } from 'react-icons/fa';
 
 import { connect } from 'react-redux';
 import { selectCartItemsCount } from '../../redux/cart/cart.selector'

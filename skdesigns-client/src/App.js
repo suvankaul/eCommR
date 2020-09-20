@@ -1,5 +1,5 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 import { Spinner } from 'react-bootstrap';
 //React redux
@@ -19,7 +19,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector'
 import { checkUserSession } from './redux/user/user.actions';
 // import { selectCollectionsForOverview } from './redux/shop/shop.selector';
-import Loader from './components/loader/Loader.component';
+
 import ErrorBoundary from './components/error-boundary/error-boundary.component'
 
 const Homepage = lazy(() => import('./modules/homepage/Homepage.component'));
@@ -93,19 +93,23 @@ const App = ({ checkUserSession, currentUser}) => {
   // }
   return (
     loading ? 
-      <Loader />
+    <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+    </Spinner>
      :
       <div >
           <Navigation></Navigation>
           <Switch>
             <ErrorBoundary>
               <Suspense fallback = {
-                <Loader />
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
               }>
                 <Route exact path='/' component={Homepage} />
                 <Route path='/shop' component={Shop} />
                 <Route exact path="/checkout" component={Checkout} />
-                <Route exact path='/signin' render={() =>currentUser ? <Redirect to='/' /> : <SigninAndSignup /> } />
+                <Route exact path='/signin' render={() =>currentUser ? <Redirect to='/' /> : <SigninAndSignup></SigninAndSignup> } />
               </Suspense>
             </ErrorBoundary>
             {/* <Route path='/signin' component={SigninAndSignup} /> */}
