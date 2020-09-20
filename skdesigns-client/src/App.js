@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import './App.scss';
 import { Spinner } from 'react-bootstrap';
@@ -8,10 +8,10 @@ import { setCurrentUser } from './redux/user/user.actions';
 
 //Component imports
 import Navigation from './components/navigation/Navigation.component'
-import Homepage from './modules/homepage/Homepage.component';
-import Shop from './modules/Shop/Shop.component';
-import SigninAndSignup from './modules/signInAndsignUp/SigninAndSignup.component';
-import Checkout from './modules/checkout/Checkout.component';
+// import Homepage from './modules/homepage/Homepage.component';
+// import Shop from './modules/Shop/Shop.component';
+// import SigninAndSignup from './modules/signInAndsignUp/SigninAndSignup.component';
+// import Checkout from './modules/checkout/Checkout.component';
 
 // import { auth, createUserProfile, addCollectionandDocuments } from './firebase/firebase.util';
 
@@ -19,6 +19,15 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector'
 import { checkUserSession } from './redux/user/user.actions';
 // import { selectCollectionsForOverview } from './redux/shop/shop.selector';
+import Loader from './components/loader/Loader.component';
+import ErrorBoundary from './components/error-boundary/error-boundary.component'
+
+const Homepage = lazy(() => import('./modules/homepage/Homepage.component'));
+const Shop = lazy(() => import('./modules/Shop/Shop.component'));
+const Checkout = lazy(() => import('./modules/checkout/Checkout.component'));
+const SigninAndSignup = lazy(() => import('./modules/signInAndsignUp/SigninAndSignup.component'));
+
+
 const App = ({ checkUserSession, currentUser}) => {
   const [loading, setLoading] = useState(true);
 
@@ -84,18 +93,22 @@ const App = ({ checkUserSession, currentUser}) => {
   // }
   return (
     loading ? 
-      <Spinner animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>
+      <Loader />
      :
       <div >
           <Navigation></Navigation>
           <Switch>
-            <Route exact path='/' component={Homepage} />
-            <Route path='/shop' component={Shop} />
+            <ErrorBoundary>
+              <Suspense fallback = {
+                <Loader />
+              }>
+                <Route exact path='/' component={Homepage} />
+                <Route path='/shop' component={Shop} />
+                <Route exact path="/checkout" component={Checkout} />
+                <Route exact path='/signin' render={() =>currentUser ? <Redirect to='/' /> : <SigninAndSignup /> } />
+              </Suspense>
+            </ErrorBoundary>
             {/* <Route path='/signin' component={SigninAndSignup} /> */}
-            <Route exact path="/checkout" component={Checkout} />
-            <Route exact path='/signin' render={() =>currentUser ? <Redirect to='/' /> : <SigninAndSignup /> } />
           </Switch>
       </div>
   )

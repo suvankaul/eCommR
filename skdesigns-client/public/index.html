@@ -35,10 +35,28 @@
             border-top-color: rgba(0, 16, 42, .4);
             animation: spin 1s ease-in-out infinite;
             -webkit-animation: spin 1s ease-in-out infinite;
-            left: calc(45%);
+            left: calc(43%);
             top: calc(35%);
             position: fixed;
             z-index: 1;
+        }
+        
+        @media screen and (max-width: 420px) {
+            .loading {
+                left: 30% !important;
+            }
+            .loading-img {
+                left: calc(31.5%) !important;
+            }
+        }
+        
+        @media screen and (max-width: 375px) {
+            .loading {
+                left: 28% !important;
+            }
+            .loading-img {
+                left: calc(29.5%) !important;
+            }
         }
         
         .loading-img {
@@ -47,7 +65,7 @@
             width: 145px;
             height: 145px;
             border-radius: 50%;
-            left: calc(45.5%);
+            left: calc(44%);
             top: calc(35.5%);
             position: fixed;
             z-index: 1;

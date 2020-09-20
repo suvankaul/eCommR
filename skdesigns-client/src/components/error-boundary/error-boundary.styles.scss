@@ -1,0 +1,22 @@
+.error-boundary {
+    position: absolute !important;
+    top: 43% !important;
+    left: 43% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: 420px) {
+        left: 30% !important;
+    }
+    @media screen and (max-width: 375px) {
+        left: 28% !important;
+    }
+    .error-boundary-text {
+        color: #00102a;
+    }
+    .error-boundary-icon {
+        color: #d63b3b;
+        font-size: 50px;
+    }
+}

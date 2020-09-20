@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, lazy, Suspense} from 'react';
 import './Shop.style.scss';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,15 +9,18 @@ import { createStructuredSelector } from 'reselect';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import { selectIsCollectionLoaded } from '../../redux/shop/shop.selector';
 
-// import Loader from '../../components/loader/Loader.component';
+import Loader from '../../components/loader/Loader.component';
 
 //*********************CONTAINERS********************
-import CollectionOverviewContainer from '../../components/collection-overview/CollectionOverview.container'
-import ShopCollectionContainer from '../shopCollection/ShopCollection.container';
+// import CollectionOverviewContainer from '../../components/collection-overview/CollectionOverview.container'
+// import ShopCollectionContainer from '../shopCollection/ShopCollection.container';
 
 //**************DIRECTLY USE HOC IN CODE********/
 // const CollectionOverviewWithLoader = Loader(CollectionOverview);
 // const ShopCollectionWithLoader = Loader(shopCollection)
+
+const CollectionOverviewContainer = lazy(() => import('../../components/collection-overview/CollectionOverview.container'));
+const ShopCollectionContainer = lazy(() => import('../shopCollection/ShopCollection.container'))
 
 
 const Shop = ({ fetchCollectionsStartAsync, match}) => {
@@ -30,8 +33,12 @@ const Shop = ({ fetchCollectionsStartAsync, match}) => {
 
     return(
         <div className="shop-container">
-            <Route exact path={`${match.path}`} component={CollectionOverviewContainer} />
-            <Route path={`${match.path}/:collectionId`} component={ShopCollectionContainer}/>
+            <Suspense fallback={
+                <Loader />
+            }>
+                <Route exact path={`${match.path}`} component={CollectionOverviewContainer} />
+                <Route path={`${match.path}/:collectionId`} component={ShopCollectionContainer}/>
+            </Suspense>
         </div>
     )
 
